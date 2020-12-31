@@ -24,6 +24,13 @@ int main()
     // set the spriteBackground to cover the screen
     spriteBackground.setPosition(0, 0);
 
+    // make a tree sprite
+   sf::Texture textureTree;
+   textureTree.loadFromFile("graphics/tree.png");
+   sf::Sprite spriteTree;
+   spriteTree.setTexture(textureTree);
+   spriteTree.setPosition(810, 0);
+
     while (window.isOpen())
     {
         /** Handle Player Input */
@@ -38,6 +45,8 @@ int main()
 
         // Draw
         window.draw(spriteBackground);
+
+        window.draw(spriteTree);
 
         // Show everything we just drew
         window.display();
