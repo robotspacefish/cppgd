@@ -31,6 +31,20 @@ int main()
    spriteTree.setTexture(textureTree);
    spriteTree.setPosition(810, 0);
 
+   // prepare a bee sprite
+   sf::Texture textureBee;
+   textureBee.loadFromFile("graphics/bee.png");
+   sf::Sprite spriteBee;
+   spriteBee.setTexture(textureBee);
+   spriteBee.setPosition(0, 800);
+
+   // is bee currently moving?
+   bool beeActive = false;
+
+   // how fast can the bee fly
+   float beeSpeed = 0.0f;
+ 
+
     while (window.isOpen())
     {
         /** Handle Player Input */
