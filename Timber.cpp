@@ -103,6 +103,21 @@ int main()
             spriteBee.setPosition(2000, height);
             beeActive = true;
         }
+        else
+        {
+            // move the bee
+            spriteBee.setPosition(
+                spriteBee.getPosition().x - (beeSpeed * dt.asSeconds()),
+                spriteBee.getPosition().y
+            );
+
+            // has the bee reached the right hand edge of the screen?
+            if (spriteBee.getPosition().x < -100)
+            {
+                // set it up to be ready to be a whole new bee next frame 
+                beeActive = false;
+            }
+        }
 
         /** Draw Scene */
         window.clear();
