@@ -95,6 +95,8 @@ int main()
 
         window.draw(spriteTree);
 
+        window.draw(spriteBee);
+
         // Show everything we just drew
         window.display();
 
