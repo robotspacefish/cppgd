@@ -80,8 +80,47 @@ int main()
    // track whether the game is running
    bool paused = true;
 
+   // draw some text 
+   int score = 0;
+
+   sf::Text messageText;
+   sf::Text scoreText;
+
+   // choose font 
+   sf::Font font;
+   font.loadFromFile("fonts/KOMIKAP_.ttf");
+
+   // set font to our message 
+   messageText.setFont(font);
+   scoreText.setFont(font);
+
+   // assign the actual message 
+   messageText.setString("Press Enter to start!");
+   scoreText.setString("Score = 0");
+
+   // increase font size
+   messageText.setCharacterSize(75);
+   scoreText.setCharacterSize(100);
+
+   // choose color 
+   messageText.setFillColor(sf::Color::White);
+   scoreText.setFillColor(sf::Color::White);
+
+   // position the text
+   sf::FloatRect textRect = messageText.getLocalBounds();
+
+   messageText.setOrigin(
+       textRect.left + textRect.width / 2.0f,
+       textRect.top + textRect.height / 2.0f
+   );
+
+   messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+
+   scoreText.setPosition(20, 20);
+
    while (window.isOpen())
     {
+
         /** Handle Player Input */
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             window.close();
@@ -212,7 +251,13 @@ int main()
                     cloud3Active = false;
                 }
             }
-        }
+
+            // update the score text
+            std::stringstream ss;
+            ss << "Score = " << score;
+            scoreText.setString(ss.str());
+
+        } // end if(!paused)
 
         
 
@@ -229,6 +274,11 @@ int main()
         window.draw(spriteTree);
 
         window.draw(spriteBee);
+
+        window.draw(scoreText);
+
+        if (paused)
+            window.draw(messageText);
 
         // Show everything we just drew
         window.display();
