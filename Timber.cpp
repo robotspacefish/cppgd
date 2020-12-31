@@ -89,6 +89,10 @@ int main()
         // Draw
         window.draw(spriteBackground);
 
+        window.draw(spriteCloud1);
+        window.draw(spriteCloud2);
+        window.draw(spriteCloud3);
+
         window.draw(spriteTree);
 
         // Show everything we just drew
