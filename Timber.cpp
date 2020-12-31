@@ -77,132 +77,145 @@ int main()
     // variables to control time itself
    sf::Clock clock;
 
+   // track whether the game is running
+   bool paused = true;
+
    while (window.isOpen())
     {
         /** Handle Player Input */
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             window.close();
 
-        /** Update Scene */
-        sf::Time dt = clock.restart();
+        // start the game
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+            paused = false;
 
-        // setup the bee
-        if (!beeActive)
+        if (!paused)
         {
-            // how fast is the bee 
-            srand((int)time(0));
+            /** Update Scene */
+            sf::Time dt = clock.restart();
 
-            // generate random number between 199 and 399
-            beeSpeed = (rand() % 200) + 200;
-
-            // how high is the bee
-            srand((int)time(0) * 10);
-
-            // generate random number between 499 and 999
-            float height = (rand() % 500) + 500;
-            spriteBee.setPosition(2000, height);
-            beeActive = true;
-        }
-        else
-        {
-            // move the bee
-            spriteBee.setPosition(
-                spriteBee.getPosition().x - (beeSpeed * dt.asSeconds()),
-                spriteBee.getPosition().y
-            );
-
-            // has the bee reached the right hand edge of the screen?
-            if (spriteBee.getPosition().x < -100)
+            // setup the bee
+            if (!beeActive)
             {
-                // set it up to be ready to be a whole new bee next frame 
-                beeActive = false;
+                // how fast is the bee 
+                srand((int)time(0));
+
+                // generate random number between 199 and 399
+                beeSpeed = (rand() % 200) + 200;
+
+                // how high is the bee
+                srand((int)time(0) * 10);
+
+                // generate random number between 499 and 999
+                float height = (rand() % 500) + 500;
+                spriteBee.setPosition(2000, height);
+                beeActive = true;
+            }
+            else
+            {
+                // move the bee
+                spriteBee.setPosition(
+                    spriteBee.getPosition().x - (beeSpeed * dt.asSeconds()),
+                    spriteBee.getPosition().y
+                );
+
+                // has the bee reached the right hand edge of the screen?
+                if (spriteBee.getPosition().x < -100)
+                {
+                    // set it up to be ready to be a whole new bee next frame 
+                    beeActive = false;
+                }
+            }
+
+            // manage the clouds 
+            // cloud 1
+            if (!cloud1Active)
+            {
+                // how fast is the cloud 
+                srand((int)time(0) * 10);
+                cloud1Speed = (rand() % 200);
+
+                // how high is the cloud
+                srand((int)time(0) * 10);
+                float height = (rand() % 150);
+                spriteCloud1.setPosition(-200, height);
+                cloud1Active = true;
+            }
+            else
+            {
+                spriteCloud1.setPosition(
+                    spriteCloud1.getPosition().x + (cloud1Speed * dt.asSeconds()),
+                    spriteCloud1.getPosition().y
+                );
+
+                // has the cloud reached the right hand edge of the screen?
+                if (spriteCloud1.getPosition().x > 1920)
+                {
+                    // set it up ready to be a whole new cloud next frame 
+                    cloud1Active = false;
+                }
+            }
+
+            // cloud 2
+            if (!cloud2Active)
+            {
+                // how fast is the cloud 
+                srand((int)time(0) * 20);
+                cloud2Speed = (rand() % 200);
+
+                // how high is the cloud
+                srand((int)time(0) * 20);
+                float height = (rand() % 300) - 150;
+                spriteCloud2.setPosition(-200, height);
+                cloud2Active = true;
+            }
+            else
+            {
+                spriteCloud2.setPosition(
+                    spriteCloud2.getPosition().x + (cloud2Speed * dt.asSeconds()),
+                    spriteCloud2.getPosition().y
+                );
+
+                // has the cloud reached the right hand edge of the screen?
+                if (spriteCloud2.getPosition().x > 1920)
+                {
+                    // set it up ready to be a whole new cloud next frame 
+                    cloud2Active = false;
+                }
+            }
+
+            // cloud 3
+            if (!cloud3Active)
+            {
+                // how fast is the cloud 
+                srand((int)time(0) * 30);
+                cloud3Speed = (rand() % 200);
+
+                // how high is the cloud
+                srand((int)time(0) * 30);
+                float height = (rand() % 450) - 150;
+                spriteCloud3.setPosition(-200, height);
+                cloud3Active = true;
+            }
+            else
+            {
+                spriteCloud3.setPosition(
+                    spriteCloud3.getPosition().x + (cloud3Speed * dt.asSeconds()),
+                    spriteCloud3.getPosition().y
+                );
+
+                // has the cloud reached the right hand edge of the screen?
+                if (spriteCloud3.getPosition().x > 1920)
+                {
+                    // set it up ready to be a whole new cloud next frame 
+                    cloud3Active = false;
+                }
             }
         }
 
-        // manage the clouds 
-        // cloud 1
-        if (!cloud1Active)
-        {
-            // how fast is the cloud 
-            srand((int)time(0) * 10);
-            cloud1Speed = (rand() % 200);
+        
 
-            // how high is the cloud
-            srand((int)time(0) * 10);
-            float height = (rand() % 150);
-            spriteCloud1.setPosition(-200, height);
-            cloud1Active = true;
-        }
-        else
-        {
-            spriteCloud1.setPosition(
-                spriteCloud1.getPosition().x + (cloud1Speed * dt.asSeconds()),
-                spriteCloud1.getPosition().y
-            );
-
-            // has the cloud reached the right hand edge of the screen?
-            if (spriteCloud1.getPosition().x > 1920)
-            {
-                // set it up ready to be a whole new cloud next frame 
-                cloud1Active = false;
-            }
-        }
-
-        // cloud 2
-        if (!cloud2Active)
-        {
-            // how fast is the cloud 
-            srand((int)time(0) * 20);
-            cloud2Speed = (rand() % 200);
-
-            // how high is the cloud
-            srand((int)time(0) * 20);
-            float height = (rand() % 300) - 150;
-            spriteCloud2.setPosition(-200, height);
-            cloud2Active = true;
-        }
-        else
-        {
-            spriteCloud2.setPosition(
-                spriteCloud2.getPosition().x + (cloud2Speed * dt.asSeconds()),
-                spriteCloud2.getPosition().y
-            );
-
-            // has the cloud reached the right hand edge of the screen?
-            if (spriteCloud2.getPosition().x > 1920)
-            {
-                // set it up ready to be a whole new cloud next frame 
-                cloud2Active = false;
-            }
-        }
-
-        // cloud 3
-        if (!cloud3Active)
-        {
-            // how fast is the cloud 
-            srand((int)time(0) * 30);
-            cloud3Speed = (rand() % 200);
-
-            // how high is the cloud
-            srand((int)time(0) * 30);
-            float height = (rand() % 450) - 150;
-            spriteCloud3.setPosition(-200, height);
-            cloud3Active = true;
-        }
-        else
-        {
-            spriteCloud3.setPosition(
-                spriteCloud3.getPosition().x + (cloud3Speed * dt.asSeconds()),
-                spriteCloud3.getPosition().y
-            );
-
-            // has the cloud reached the right hand edge of the screen?
-            if (spriteCloud3.getPosition().x > 1920)
-            {
-                // set it up ready to be a whole new cloud next frame 
-                cloud3Active = false;
-            }
-        }
         /** Draw Scene */
         window.clear();
 
