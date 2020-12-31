@@ -44,8 +44,37 @@ int main()
    // how fast can the bee fly
    float beeSpeed = 0.0f;
  
+   // make 3 cloud sprites from 1 texture
+   sf::Texture textureCloud;
 
-    while (window.isOpen())
+   // load 1 new texture 
+   textureCloud.loadFromFile("graphics/cloud.png");
+
+   // 3 new sprites with the same texture 
+   sf::Sprite spriteCloud1;
+   sf::Sprite spriteCloud2;
+   sf::Sprite spriteCloud3;
+   spriteCloud1.setTexture(textureCloud);
+   spriteCloud2.setTexture(textureCloud);
+   spriteCloud3.setTexture(textureCloud);
+
+
+   // position the clouds off screen 
+   spriteCloud1.setPosition(0, 0);
+   spriteCloud2.setPosition(0, 250);
+   spriteCloud3.setPosition(0, 500);
+
+   // are the clouds currently on screen?
+   bool cloud1Active = false;
+   bool cloud2Active = false;
+   bool cloud3Active = false;
+    
+   // how fast is each cloud?
+   float cloud1Speed = 0.0f;
+   float cloud2Speed = 0.0f;
+   float cloud3Speed = 0.0f;
+
+   while (window.isOpen())
     {
         /** Handle Player Input */
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
