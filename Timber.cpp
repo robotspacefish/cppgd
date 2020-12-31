@@ -125,7 +125,7 @@ int main()
         {
             // how fast is the cloud 
             srand((int)time(0) * 10);
-            cloud1Speed = (rand() * 200);
+            cloud1Speed = (rand() % 200);
 
             // how high is the cloud
             srand((int)time(0) * 10);
