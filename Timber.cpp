@@ -77,6 +77,18 @@ int main()
     // variables to control time itself
    sf::Clock clock;
 
+   // time bar 
+   sf::RectangleShape timeBar;
+   float timeBarStartWidth = 400;
+   float timeBarHeight = 80;
+   timeBar.setSize(sf::Vector2f(timeBarStartWidth, timeBarHeight));
+   timeBar.setFillColor(sf::Color::Red);
+   timeBar.setPosition((1920 / 2) - timeBarStartWidth / 2, 980);
+
+   sf::Time gameTimeTotal;
+   float timeRemaining = 6.0f;
+   float timeBarWidthPerSecond = timeBarStartWidth / timeRemaining;
+
    // track whether the game is running
    bool paused = true;
 
@@ -127,12 +139,42 @@ int main()
 
         // start the game
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+        {
             paused = false;
+
+            // reset the time and the score 
+            score = 0;
+            timeRemaining = 6;
+        }
 
         if (!paused)
         {
             /** Update Scene */
             sf::Time dt = clock.restart();
+            
+            // subtract from the amount of time remaining 
+            timeRemaining -= dt.asSeconds();
+
+            // size up the time bar 
+            timeBar.setSize(sf::Vector2f(timeBarWidthPerSecond * timeRemaining, timeBarHeight));
+
+            if (timeRemaining <= 0.0f)
+            {
+                // pause the game 
+                paused = true;
+
+                // change the message shown to the player 
+                messageText.setString("Out of time!!");
+
+                // reposition the text based on its new size 
+                sf::FloatRect textRect = messageText.getLocalBounds();
+                messageText.setOrigin(
+                    textRect.left + textRect.width / 2.0f,
+                    textRect.top + textRect.height / 2.0f
+                );
+
+                messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+            }
 
             // setup the bee
             if (!beeActive)
@@ -276,6 +318,8 @@ int main()
         window.draw(spriteBee);
 
         window.draw(scoreText);
+
+        window.draw(timeBar);
 
         if (paused)
             window.draw(messageText);
