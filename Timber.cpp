@@ -9,5 +9,12 @@ int main()
     // create and open a window for the game 
     sf::RenderWindow window(vm, "Timber!!!", sf::Style::Fullscreen);
 
+    while (window.isOpen())
+    {
+        /** Handle Player Input */
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            window.close();
+    }
+
     return 0;
 }
