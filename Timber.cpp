@@ -14,6 +14,19 @@ int main()
         /** Handle Player Input */
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             window.close();
+
+        /** Update Scene */
+        // TODO
+
+        /** Draw Scene */
+        window.clear();
+
+        // Draw
+        // TODO
+
+        // Show everything we just drew
+        window.display();
+
     }
 
     return 0;
