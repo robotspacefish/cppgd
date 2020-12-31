@@ -74,6 +74,9 @@ int main()
    float cloud2Speed = 0.0f;
    float cloud3Speed = 0.0f;
 
+    // variables to control time itself
+   sf::Clock clock;
+
    while (window.isOpen())
     {
         /** Handle Player Input */
@@ -81,7 +84,7 @@ int main()
             window.close();
 
         /** Update Scene */
-        // TODO
+        sf::Time dt = clock.restart();
 
         /** Draw Scene */
         window.clear();
