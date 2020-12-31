@@ -86,6 +86,24 @@ int main()
         /** Update Scene */
         sf::Time dt = clock.restart();
 
+        // setup the bee
+        if (!beeActive)
+        {
+            // how fast is the bee 
+            srand((int)time(0));
+
+            // generate random number between 199 and 399
+            beeSpeed = (rand() % 200) + 200;
+
+            // how high is the bee
+            srand((int)time(0) * 10);
+
+            // generate random number between 499 and 999
+            float height = (rand() % 500) + 500;
+            spriteBee.setPosition(2000, height);
+            beeActive = true;
+        }
+
         /** Draw Scene */
         window.clear();
 
