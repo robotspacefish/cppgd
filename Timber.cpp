@@ -119,6 +119,35 @@ int main()
             }
         }
 
+        // manage the clouds 
+        // cloud 1
+        if (!cloud1Active)
+        {
+            // how fast is the cloud 
+            srand((int)time(0) * 10);
+            cloud1Speed = (rand() * 200);
+
+            // how high is the cloud
+            srand((int)time(0) * 10);
+            float height = (rand() % 150);
+            spriteCloud1.setPosition(-200, height);
+            cloud1Active = true;
+        }
+        else
+        {
+            spriteCloud1.setPosition(
+                spriteCloud1.getPosition().x + (cloud1Speed * dt.asSeconds()),
+                spriteCloud1.getPosition().y
+            );
+
+            // has the cloud reached the right hand edge of the screen?
+            if (spriteCloud1.getPosition().x > 1920)
+            {
+                // set it up ready to be a whole new cloud next frame 
+                cloud1Active = false;
+            }
+        }
+
         /** Draw Scene */
         window.clear();
 
