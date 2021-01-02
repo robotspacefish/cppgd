@@ -183,6 +183,18 @@ int main()
    const float AXE_POSITION_LEFT = 700;
    const float AXE_POSITION_RIGHT = 1075;
 
+   // prepare the flying log
+   sf::Texture textureLog;
+   textureLog.loadFromFile("graphics/log.png");
+   sf::Sprite spriteLog;
+   spriteLog.setTexture(textureLog);
+   spriteLog.setPosition(810, 720);
+
+   // log related variables 
+   bool logActive = false;
+   float logSpeedX = 1000;
+   float logSPeedY = -1500;
+
    while (window.isOpen())
     {
 
