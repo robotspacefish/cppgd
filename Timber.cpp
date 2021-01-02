@@ -228,6 +228,36 @@ int main()
             acceptInput = true;
         }
 
+        // wrap the player controls to 
+        // make sure we are accepting input 
+        if (acceptInput)
+        {
+            // handle pressing the right cursor key
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            {
+                // make sure player is on the right
+                playerSide = side::RIGHT;
+
+                score++;
+                // add to the amount of time remaining 
+                timeRemaining += (2 / score) + .15;
+
+                spriteAxe.setPosition(AXE_POSITION_RIGHT, spriteAxe.getPosition().y);
+
+                spritePlayer.setPosition(1200, 720);
+
+                // update the branches
+                updateBranches(score);
+
+                // set the log flying to the left
+                spriteLog.setPosition(810, 720);
+                logSpeedX = -5000;
+                logActive = true;
+
+                acceptInput = false;
+            }
+        }
+
         if (!paused)
         {
             /** Update Scene */
