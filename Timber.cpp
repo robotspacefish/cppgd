@@ -367,6 +367,10 @@ int main()
         window.draw(spriteCloud2);
         window.draw(spriteCloud3);
 
+        // draw the branches 
+        for (int i = 0; i < NUM_BRANCHES; i++)
+            window.draw(branches[i]);
+
         window.draw(spriteTree);
 
         window.draw(spriteBee);
