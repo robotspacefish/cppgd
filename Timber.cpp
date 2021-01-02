@@ -289,6 +289,9 @@ int main()
                 logActive = true;
 
                 acceptInput = false;
+
+                // play chop sound 
+                chop.play();
             }
 
             // handle pressing the left cursor key
@@ -316,7 +319,8 @@ int main()
 
                 acceptInput = false;
 
-
+                // play chop sound 
+                chop.play();
             }
         }
 
@@ -347,6 +351,9 @@ int main()
                 );
 
                 messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+
+                // play the out of time sound 
+                outOfTime.play();
             }
 
             // setup the bee
@@ -544,6 +551,9 @@ int main()
                 );
 
                 messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+
+                // play death sound 
+                death.play();
             }
         } // end if(!paused)
 
