@@ -1,5 +1,6 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 void updateBranches(int seed);
 
@@ -197,6 +198,25 @@ int main()
 
    // control player input 
    bool acceptInput = false;
+
+   // prepare the sounds
+    // player chopping sound
+   sf::SoundBuffer chopBuffer;
+   chopBuffer.loadFromFile("sound/chop.wav");
+   sf::Sound chop;
+   chop.setBuffer(chopBuffer);
+
+   // the player has met his end under a branch
+   sf::SoundBuffer deathBuffer;
+   deathBuffer.loadFromFile("sound/death.wav");
+   sf::Sound death;
+   death.setBuffer(deathBuffer);
+
+   // out of time 
+   sf::SoundBuffer ootBuffer;
+   ootBuffer.loadFromFile("sound/out_of_time.wav");
+   sf::Sound outOfTime;
+   outOfTime.setBuffer(ootBuffer);
 
    while (window.isOpen())
     {
