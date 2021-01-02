@@ -324,6 +324,35 @@ int main()
             ss << "Score = " << score;
             scoreText.setString(ss.str());
 
+            // update the branch sprites 
+            for (int i = 0; i < NUM_BRANCHES; i++)
+            {
+                float height = i * 150;
+
+                if (branchPositions[i] == side::LEFT)
+                {
+
+                    // move the sprite to the left sie 
+                    branches[i].setPosition(610, height);
+
+                    // flip the sprite around the other way 
+                    branches[i].setRotation(180);
+                }
+                else if (branchPositions[i] == side::RIGHT)
+                {
+                    // move the sprite to the right side 
+                    branches[i].setPosition(1330, height);
+
+                    // set the sprite rotation to normal
+                    branches[i].setRotation(0);
+                }
+                else 
+                {
+                    // hide the branch 
+                    branches[i].setPosition(3000, height);
+                }
+            }
+
         } // end if(!paused)
 
         
