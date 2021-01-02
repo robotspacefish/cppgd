@@ -193,7 +193,7 @@ int main()
    // log related variables 
    bool logActive = false;
    float logSpeedX = 1000;
-   float logSPeedY = -1500;
+   float logSpeedY = -1500;
 
    // control player input 
    bool acceptInput = false;
