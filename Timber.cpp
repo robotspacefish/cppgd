@@ -172,6 +172,17 @@ int main()
    spriteRIP.setTexture(textureRIP);
    spriteRIP.setPosition(600, 860);
 
+   // prepare the axe
+   sf::Texture textureAxe;
+   textureAxe.loadFromFile("graphics/axe.png");
+   sf::Sprite spriteAxe;
+   spriteAxe.setTexture(textureAxe);
+   spriteAxe.setPosition(700, 830);
+   
+    // line up the axe with the tree
+   const float AXE_POSITION_LEFT = 700;
+   const float AXE_POSITION_RIGHT = 1075;
+
    while (window.isOpen())
     {
 
