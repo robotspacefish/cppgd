@@ -213,6 +213,19 @@ int main()
             // reset the time and the score 
             score = 0;
             timeRemaining = 6;
+
+            // make all the branches disappear  
+            // starting in the second position
+            for (int i = 1; i < NUM_BRANCHES; i++)
+                branchPositions[i] = side::NONE;
+
+            // make sure gravestone is hidden
+            spriteRIP.setPosition(675, 2000);
+
+            // move player into position
+            spritePlayer.setPosition(580, 720);
+
+            acceptInput = true;
         }
 
         if (!paused)
