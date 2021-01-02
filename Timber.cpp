@@ -155,6 +155,13 @@ int main()
        branches[i].setOrigin(220, 20);
    }
 
+   // prepare the player 
+   sf::Texture texturePlayer;
+   texturePlayer.loadFromFile("graphics/player.png");
+   sf::Sprite spritePlayer;
+   spritePlayer.setTexture(texturePlayer);
+   spritePlayer.setPosition(580, 720);
+
    while (window.isOpen())
     {
 
