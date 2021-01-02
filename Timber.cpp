@@ -202,6 +202,20 @@ int main()
     {
 
         /** Handle Player Input */
+        sf::Event event;
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::KeyReleased && !paused)
+            {
+                // listen for key presses again
+                acceptInput = true;
+
+                // hide the axe
+                spriteAxe.setPosition(2000, spriteAxe.getPosition().y);
+            }
+        }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             window.close();
 
