@@ -256,6 +256,34 @@ int main()
 
                 acceptInput = false;
             }
+
+            // handle pressing the left cursor key
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            {
+                // make sure player is on the left
+                playerSide = side::LEFT;
+
+                score++;
+
+                // add to the amount of time remaining
+                timeRemaining += (2 / score) + .15;
+
+                spriteAxe.setPosition(AXE_POSITION_LEFT, spriteAxe.getPosition().y);
+
+                spritePlayer.setPosition(580, 720);
+
+                // update the branches 
+                updateBranches(score);
+
+                // set the log flying
+                spriteLog.setPosition(810, 720);
+                logSpeedX = 5000;
+                logActive = true;
+
+                acceptInput = false;
+
+
+            }
         }
 
         if (!paused)
