@@ -162,6 +162,9 @@ int main()
    spritePlayer.setTexture(texturePlayer);
    spritePlayer.setPosition(580, 720);
 
+   // player starts on the left 
+   side playerSide = side::LEFT;
+
    while (window.isOpen())
     {
 
