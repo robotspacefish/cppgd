@@ -1,6 +1,16 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 
+void updateBranches(int seed);
+
+const int NUM_BRANCHES = 6;
+sf::Sprite branches[NUM_BRANCHES];
+
+// where is the player/branch?
+// left or right 
+enum class side { LEFT, RIGHT, NONE };
+side branchPositions[NUM_BRANCHES];
+
 int main()
 {
     // create a video mode object
@@ -129,6 +139,21 @@ int main()
    messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
 
    scoreText.setPosition(20, 20);
+
+   // prepare 6 branches
+   sf::Texture textureBranch;
+   textureBranch.loadFromFile("graphics/branch.png");
+
+   // set the texture for each branch sprite 
+   for (int i = 0; i < NUM_BRANCHES; i++)
+   {
+       branches[i].setTexture(textureBranch);
+       branches[i].setPosition(-2000, -2000);
+
+       // set sprite's origin to dead center
+       // we can then spin it around without changing its position
+       branches[i].setOrigin(220, 20);
+   }
 
    while (window.isOpen())
     {
