@@ -413,6 +413,14 @@ int main()
 
         window.draw(spriteTree);
 
+        window.draw(spritePlayer);
+
+        window.draw(spriteAxe);
+
+        window.draw(spriteLog);
+
+        window.draw(spriteRIP);
+
         window.draw(spriteBee);
 
         window.draw(scoreText);
