@@ -195,6 +195,9 @@ int main()
    float logSpeedX = 1000;
    float logSPeedY = -1500;
 
+   // control player input 
+   bool acceptInput = false;
+
    while (window.isOpen())
     {
 
