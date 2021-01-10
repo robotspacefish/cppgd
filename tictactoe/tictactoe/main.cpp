@@ -12,6 +12,7 @@ const char NO_ONE = 'N';
 
 void instructions();
 void displayBoard(const std::vector<char>& board);
+char winner(const std::vector<char>& board);
 
 int main() {
     const int NUM_SQUARES = 9;
@@ -48,4 +49,38 @@ void displayBoard(const std::vector<char>& board)
     cout << "\n\t" << "---------";
     cout << "\n\t" << board[6] << " | " << board[7] << " | " << board[8];
     cout << "\n\n";
+}
+
+char winner(const std::vector<char>& board)
+{
+    const int WINNING_ROWS[8][3] = {
+        {0, 1, 2},
+        {3, 4, 5},
+        {6, 7, 8},
+        {0, 3, 6},
+        {1, 4, 7},
+        {2, 5, 8},
+        {0, 4, 8},
+        {2, 4, 6}
+    };
+    
+    const int TOTAL_ROWS = 8;
+    
+    // check if row is not empty and contains all the same value (all 'X' or all 'O')
+    for (int row = 0; row < TOTAL_ROWS; row++)
+    {
+            if ((board[WINNING_ROWS[row][0]] != EMPTY) &&
+                (board[WINNING_ROWS[row][0]] == board[WINNING_ROWS[row][1]]) &&
+                (board[WINNING_ROWS[row][1]] == board[WINNING_ROWS[row][2]]))
+            {
+                return board[WINNING_ROWS[row][0]];
+            }
+    }
+    
+    // check for tie
+    if (std::count(board.begin(), board.end(), EMPTY) == 0)
+        return TIE;
+    
+    
+    return NO_ONE;
 }
