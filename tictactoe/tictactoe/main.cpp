@@ -19,8 +19,23 @@ int main() {
     // init 9 blank spaces on the board
     std::vector<char> board(NUM_SQUARES, EMPTY);
     
+    // test for tie
+    board[0] = X;
+    board[1] = X;
+    board[2] = O;
+    
+    board[3] = O;
+    board[4] = O;
+    board[5] = X;
+    
+    board[6] = X;
+    board[7] = X;
+    board[8] = O;
+    
     instructions();
     displayBoard(board);
+    
+    std::cout << winner(board);
     return 0;
 }
 
