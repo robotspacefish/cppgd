@@ -75,7 +75,21 @@ int main()
 
 		/* update bat, ball, and HUD */
 
+		// update the delta time 
+		sf::Time dt = clock.restart();
+
+		bat.update(dt);
+
+		// update HUD text 
+		std::stringstream ss;
+		ss << "Score:" << score << " Lives:" << lives;
+		hud.setString(ss.str());
+
 		/* draw bat, ball, and HUD */
+		window.clear();
+		window.draw(hud);
+		window.draw(bat.getShape());
+		window.display();
 	}
 	return 0;
 }
