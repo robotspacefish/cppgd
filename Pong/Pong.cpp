@@ -13,5 +13,11 @@ int main()
 
 	int score = 0;
 	int lives = 3;
+
+	// create a bat at the bottom center of the screen
+	Bat bat(1920 / 2, 1080 - 20);
+
+	// TODO add ball
+
 	return 0;
 }
