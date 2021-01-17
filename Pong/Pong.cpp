@@ -19,5 +19,33 @@ int main()
 
 	// TODO add ball
 
+	// create HUD
+	sf::Text hud;
+
+	// retro style font 
+	sf::Font font;
+	font.loadFromFile("fonts/DS-DIGI.ttf");
+
+	hud.setFont(font);
+
+	hud.setCharacterSize(75);
+
+	hud.setFillColor(sf::Color::White);
+
+	hud.setPosition(20, 20);
+
+	// clock for timing everyting
+	sf::Clock clock;
+
+	while (window.isOpen()
+	{
+
+		// TODO
+		/* Handle player input */
+
+		/* update bat, ball, and HUD */
+
+		/* draw bat, ball, and HUD */
+	}
 	return 0;
 }
