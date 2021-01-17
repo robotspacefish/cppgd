@@ -113,6 +113,12 @@ int main()
 			score++;
 		}
 
+		// handle ball hitting sides 
+		if (ball.getPosition().left < 0 || ball.getPosition().left + ball.getPosition().width > window.getSize().x)
+		{
+			ball.reboundSides();
+		}
+
 		/* draw bat, ball, and HUD */
 		window.clear();
 		window.draw(hud);
