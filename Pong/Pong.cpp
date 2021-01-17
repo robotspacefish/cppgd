@@ -119,6 +119,15 @@ int main()
 			ball.reboundSides();
 		}
 
+		// has ball hit bat?
+		if (ball.getPosition().intersects(bat.getPosition()))
+		{
+			// hit detected so reverse the ball and score a point
+			ball.reboundBatOrTop();
+
+			score++;
+		}
+
 		/* draw bat, ball, and HUD */
 		window.clear();
 		window.draw(hud);
