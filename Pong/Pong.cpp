@@ -88,6 +88,24 @@ int main()
 		ss << "Score:" << score << " Lives:" << lives;
 		hud.setString(ss.str());
 
+		// handle ball hitting the bottom
+		if (ball.getPosition().top > window.getSize().y)
+		{
+			// reverse the ball direction 
+			ball.reboundBottom();
+
+			// remove a life 
+			lives--;
+
+			// check for 0 lives 
+			if (lives < 1)
+			{
+				score = 0;
+				lives = 3;
+			}
+
+		}
+
 		/* draw bat, ball, and HUD */
 		window.clear();
 		window.draw(hud);
