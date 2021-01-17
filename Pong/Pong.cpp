@@ -11,5 +11,7 @@ int main()
 	// create and open a window for the game 
 	sf::RenderWindow window(vm, "Pong", sf::Style::Fullscreen);
 
+	int score = 0;
+	int lives = 3;
 	return 0;
 }
