@@ -37,11 +37,41 @@ int main()
 	// clock for timing everyting
 	sf::Clock clock;
 
-	while (window.isOpen()
+	while (window.isOpen())
 	{
-
-		// TODO
 		/* Handle player input */
+
+		sf::Event event;
+
+		while (window.pollEvent(event))
+		{
+			// quit the game when the window is closed
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		// handle player quitting 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			window.close();
+
+		// handle pressing and releasing of the arrow keys 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			bat.moveLeft();
+		}
+		else
+		{
+			bat.stopLeft();
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			bat.moveRight();
+		}
+		else
+		{
+			bat.stopRight();
+		}
 
 		/* update bat, ball, and HUD */
 
