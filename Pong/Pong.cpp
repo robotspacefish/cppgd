@@ -103,7 +103,14 @@ int main()
 				score = 0;
 				lives = 3;
 			}
+		}
 
+		// handle ball hitting top 
+		if (ball.getPosition().top < 0)
+		{
+			ball.reboundBatOrTop();
+
+			score++;
 		}
 
 		/* draw bat, ball, and HUD */
