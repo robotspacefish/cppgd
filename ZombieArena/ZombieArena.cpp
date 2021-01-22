@@ -41,9 +41,9 @@ int main()
     // main game loop
     while (window.isOpen())
     {
-        /* 
+        /*
         *************
-         Handle Input 
+         Handle Input
         *************
         */
 

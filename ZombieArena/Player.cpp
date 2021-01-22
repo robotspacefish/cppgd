@@ -42,7 +42,7 @@ void Player::resetPlayerStats()
 }
 
 sf::Time Player::getLastHitTime()
-{	
+{
 	return m_LastHit;
 }
 
