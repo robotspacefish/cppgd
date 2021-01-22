@@ -9,11 +9,12 @@ int main()
     // start with the GAME_OVER state 
     State state = State::GAME_OVER;
 
-    // get the screen resolution and create an SFML window
+    // get the screen resolution
     sf::Vector2f resolution;
     resolution.x = sf::VideoMode::getDesktopMode().width;
     resolution.y = sf::VideoMode::getDesktopMode().height;
 
+    // create an SFML window
     sf::RenderWindow window(sf::VideoMode(resolution.x, resolution.y), "Zombie Arena", sf::Style::Fullscreen);
 
     // create a SFML View for the main action
@@ -40,6 +41,40 @@ int main()
     // main game loop
     while (window.isOpen())
     {
+        /* 
+        *************
+         Handle Input 
+        *************
+        */
+
+        // Handle events by polling
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // pause game while playing 
+            if (event.key.code == sf::Keyboard::Return && state == State::PLAYING)
+            {
+                state = State::PAUSED;
+            }
+            // restart while paused
+            else if (event.key.code == sf::Keyboard::Return && state == State::PAUSED)
+            {
+                state = State::PLAYING;
+
+                // reset the clock so there isn't a frame jump
+                clock.restart();
+            }
+            // start a new game while in GAME_OVER state
+            else if (event.key.code == sf::Keyboard::Return && state == State::GAME_OVER)
+            {
+                state = State::LEVELING_UP;
+            }
+
+            if (state == State::PLAYING)
+            {
+                // TODO
+            }
+        } // end event polling
 
     }
     return 0;
