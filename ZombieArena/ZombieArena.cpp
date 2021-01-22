@@ -76,6 +76,15 @@ int main()
             }
         } // end event polling
 
+        // handle WASD while playing
+        if (state == State::PLAYING)
+        {
+            // handle the pressing and releasing of the WASD keys
+            sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? player.moveUp() : player.stopUp();
+            sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? player.moveDown() : player.stopDown();
+            sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? player.moveLeft() : player.stopLeft();
+            sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? player.moveRight() : player.stopRight();
+        }
     }
     return 0;
 }
