@@ -36,189 +36,189 @@ int main()
     spriteBackground.setPosition(0, 0);
 
     // make a tree sprite
-   sf::Texture textureTree;
-   textureTree.loadFromFile("graphics/tree.png");
-   sf::Sprite spriteTree;
-   spriteTree.setTexture(textureTree);
-   spriteTree.setPosition(810, 0);
+    sf::Texture textureTree;
+    textureTree.loadFromFile("graphics/tree.png");
+    sf::Sprite spriteTree;
+    spriteTree.setTexture(textureTree);
+    spriteTree.setPosition(810, 0);
 
-   // prepare a bee sprite
-   sf::Texture textureBee;
-   textureBee.loadFromFile("graphics/bee.png");
-   sf::Sprite spriteBee;
-   spriteBee.setTexture(textureBee);
-   spriteBee.setPosition(0, 800);
+    // prepare a bee sprite
+    sf::Texture textureBee;
+    textureBee.loadFromFile("graphics/bee.png");
+    sf::Sprite spriteBee;
+    spriteBee.setTexture(textureBee);
+    spriteBee.setPosition(0, 800);
 
-   // is bee currently moving?
-   bool beeActive = false;
+    // is bee currently moving?
+    bool beeActive = false;
 
-   // how fast can the bee fly
-   float beeSpeed = 0.0f;
- 
-   // make 3 cloud sprites from 1 texture
-   sf::Texture textureCloud;
+    // how fast can the bee fly
+    float beeSpeed = 0.0f;
 
-   // load 1 new texture 
-   textureCloud.loadFromFile("graphics/cloud.png");
+    // make 3 cloud sprites from 1 texture
+    sf::Texture textureCloud;
 
-   // 3 new sprites with the same texture 
-   sf::Sprite spriteCloud1;
-   sf::Sprite spriteCloud2;
-   sf::Sprite spriteCloud3;
-   spriteCloud1.setTexture(textureCloud);
-   spriteCloud2.setTexture(textureCloud);
-   spriteCloud3.setTexture(textureCloud);
+    // load 1 new texture 
+    textureCloud.loadFromFile("graphics/cloud.png");
+
+    // 3 new sprites with the same texture 
+    sf::Sprite spriteCloud1;
+    sf::Sprite spriteCloud2;
+    sf::Sprite spriteCloud3;
+    spriteCloud1.setTexture(textureCloud);
+    spriteCloud2.setTexture(textureCloud);
+    spriteCloud3.setTexture(textureCloud);
 
 
-   // position the clouds off screen 
-   spriteCloud1.setPosition(0, 0);
-   spriteCloud2.setPosition(0, 250);
-   spriteCloud3.setPosition(0, 500);
+    // position the clouds off screen 
+    spriteCloud1.setPosition(0, 0);
+    spriteCloud2.setPosition(0, 250);
+    spriteCloud3.setPosition(0, 500);
 
-   // are the clouds currently on screen?
-   bool cloud1Active = false;
-   bool cloud2Active = false;
-   bool cloud3Active = false;
-    
-   // how fast is each cloud?
-   float cloud1Speed = 0.0f;
-   float cloud2Speed = 0.0f;
-   float cloud3Speed = 0.0f;
+    // are the clouds currently on screen?
+    bool cloud1Active = false;
+    bool cloud2Active = false;
+    bool cloud3Active = false;
+
+    // how fast is each cloud?
+    float cloud1Speed = 0.0f;
+    float cloud2Speed = 0.0f;
+    float cloud3Speed = 0.0f;
 
     // variables to control time itself
-   sf::Clock clock;
+    sf::Clock clock;
 
-   // time bar 
-   sf::RectangleShape timeBar;
-   float timeBarStartWidth = 400;
-   float timeBarHeight = 80;
-   timeBar.setSize(sf::Vector2f(timeBarStartWidth, timeBarHeight));
-   timeBar.setFillColor(sf::Color::Red);
-   timeBar.setPosition((1920 / 2) - timeBarStartWidth / 2, 980);
+    // time bar 
+    sf::RectangleShape timeBar;
+    float timeBarStartWidth = 400;
+    float timeBarHeight = 80;
+    timeBar.setSize(sf::Vector2f(timeBarStartWidth, timeBarHeight));
+    timeBar.setFillColor(sf::Color::Red);
+    timeBar.setPosition((1920 / 2) - timeBarStartWidth / 2, 980);
 
-   sf::Time gameTimeTotal;
-   float timeRemaining = 6.0f;
-   float timeBarWidthPerSecond = timeBarStartWidth / timeRemaining;
+    sf::Time gameTimeTotal;
+    float timeRemaining = 6.0f;
+    float timeBarWidthPerSecond = timeBarStartWidth / timeRemaining;
 
-   // track whether the game is running
-   bool paused = true;
+    // track whether the game is running
+    bool paused = true;
 
-   // draw some text 
-   int score = 0;
+    // draw some text 
+    int score = 0;
 
-   sf::Text messageText;
-   sf::Text scoreText;
+    sf::Text messageText;
+    sf::Text scoreText;
 
-   // choose font 
-   sf::Font font;
-   font.loadFromFile("fonts/KOMIKAP_.ttf");
+    // choose font 
+    sf::Font font;
+    font.loadFromFile("fonts/KOMIKAP_.ttf");
 
-   // set font to our message 
-   messageText.setFont(font);
-   scoreText.setFont(font);
+    // set font to our message 
+    messageText.setFont(font);
+    scoreText.setFont(font);
 
-   // assign the actual message 
-   messageText.setString("Press Enter to start!");
-   scoreText.setString("Score = 0");
+    // assign the actual message 
+    messageText.setString("Press Enter to start!");
+    scoreText.setString("Score = 0");
 
-   // increase font size
-   messageText.setCharacterSize(75);
-   scoreText.setCharacterSize(100);
+    // increase font size
+    messageText.setCharacterSize(75);
+    scoreText.setCharacterSize(100);
 
-   // choose color 
-   messageText.setFillColor(sf::Color::White);
-   scoreText.setFillColor(sf::Color::White);
+    // choose color 
+    messageText.setFillColor(sf::Color::White);
+    scoreText.setFillColor(sf::Color::White);
 
-   // position the text
-   sf::FloatRect textRect = messageText.getLocalBounds();
+    // position the text
+    sf::FloatRect textRect = messageText.getLocalBounds();
 
-   messageText.setOrigin(
-       textRect.left + textRect.width / 2.0f,
-       textRect.top + textRect.height / 2.0f
-   );
+    messageText.setOrigin(
+        textRect.left + textRect.width / 2.0f,
+        textRect.top + textRect.height / 2.0f
+    );
 
-   messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+    messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
 
-   scoreText.setPosition(20, 20);
+    scoreText.setPosition(20, 20);
 
-   // prepare 6 branches
-   sf::Texture textureBranch;
-   textureBranch.loadFromFile("graphics/branch.png");
+    // prepare 6 branches
+    sf::Texture textureBranch;
+    textureBranch.loadFromFile("graphics/branch.png");
 
-   // set the texture for each branch sprite 
-   for (int i = 0; i < NUM_BRANCHES; i++)
-   {
-       branches[i].setTexture(textureBranch);
-       branches[i].setPosition(-2000, -2000);
+    // set the texture for each branch sprite 
+    for (int i = 0; i < NUM_BRANCHES; i++)
+    {
+        branches[i].setTexture(textureBranch);
+        branches[i].setPosition(-2000, -2000);
 
-       // set sprite's origin to dead center
-       // we can then spin it around without changing its position
-       branches[i].setOrigin(220, 20);
-   }
+        // set sprite's origin to dead center
+        // we can then spin it around without changing its position
+        branches[i].setOrigin(220, 20);
+    }
 
-   // prepare the player 
-   sf::Texture texturePlayer;
-   texturePlayer.loadFromFile("graphics/player.png");
-   sf::Sprite spritePlayer;
-   spritePlayer.setTexture(texturePlayer);
-   spritePlayer.setPosition(580, 720);
+    // prepare the player 
+    sf::Texture texturePlayer;
+    texturePlayer.loadFromFile("graphics/player.png");
+    sf::Sprite spritePlayer;
+    spritePlayer.setTexture(texturePlayer);
+    spritePlayer.setPosition(580, 720);
 
-   // player starts on the left 
-   side playerSide = side::LEFT;
+    // player starts on the left 
+    side playerSide = side::LEFT;
 
-   // prepare the gravestone 
-   sf::Texture textureRIP;
-   textureRIP.loadFromFile("graphics/rip.png");
-   sf::Sprite spriteRIP;
-   spriteRIP.setTexture(textureRIP);
-   spriteRIP.setPosition(600, 860);
+    // prepare the gravestone 
+    sf::Texture textureRIP;
+    textureRIP.loadFromFile("graphics/rip.png");
+    sf::Sprite spriteRIP;
+    spriteRIP.setTexture(textureRIP);
+    spriteRIP.setPosition(600, 860);
 
-   // prepare the axe
-   sf::Texture textureAxe;
-   textureAxe.loadFromFile("graphics/axe.png");
-   sf::Sprite spriteAxe;
-   spriteAxe.setTexture(textureAxe);
-   spriteAxe.setPosition(700, 830);
-   
+    // prepare the axe
+    sf::Texture textureAxe;
+    textureAxe.loadFromFile("graphics/axe.png");
+    sf::Sprite spriteAxe;
+    spriteAxe.setTexture(textureAxe);
+    spriteAxe.setPosition(700, 830);
+
     // line up the axe with the tree
-   const float AXE_POSITION_LEFT = 700;
-   const float AXE_POSITION_RIGHT = 1075;
+    const float AXE_POSITION_LEFT = 700;
+    const float AXE_POSITION_RIGHT = 1075;
 
-   // prepare the flying log
-   sf::Texture textureLog;
-   textureLog.loadFromFile("graphics/log.png");
-   sf::Sprite spriteLog;
-   spriteLog.setTexture(textureLog);
-   spriteLog.setPosition(810, 720);
+    // prepare the flying log
+    sf::Texture textureLog;
+    textureLog.loadFromFile("graphics/log.png");
+    sf::Sprite spriteLog;
+    spriteLog.setTexture(textureLog);
+    spriteLog.setPosition(810, 720);
 
-   // log related variables 
-   bool logActive = false;
-   float logSpeedX = 1000;
-   float logSpeedY = -1500;
+    // log related variables 
+    bool logActive = false;
+    float logSpeedX = 1000;
+    float logSpeedY = -1500;
 
-   // control player input 
-   bool acceptInput = false;
+    // control player input 
+    bool acceptInput = false;
 
-   // prepare the sounds
-    // player chopping sound
-   sf::SoundBuffer chopBuffer;
-   chopBuffer.loadFromFile("sound/chop.wav");
-   sf::Sound chop;
-   chop.setBuffer(chopBuffer);
+    // prepare the sounds
+     // player chopping sound
+    sf::SoundBuffer chopBuffer;
+    chopBuffer.loadFromFile("sound/chop.wav");
+    sf::Sound chop;
+    chop.setBuffer(chopBuffer);
 
-   // the player has met his end under a branch
-   sf::SoundBuffer deathBuffer;
-   deathBuffer.loadFromFile("sound/death.wav");
-   sf::Sound death;
-   death.setBuffer(deathBuffer);
+    // the player has met his end under a branch
+    sf::SoundBuffer deathBuffer;
+    deathBuffer.loadFromFile("sound/death.wav");
+    sf::Sound death;
+    death.setBuffer(deathBuffer);
 
-   // out of time 
-   sf::SoundBuffer ootBuffer;
-   ootBuffer.loadFromFile("sound/out_of_time.wav");
-   sf::Sound outOfTime;
-   outOfTime.setBuffer(ootBuffer);
+    // out of time 
+    sf::SoundBuffer ootBuffer;
+    ootBuffer.loadFromFile("sound/out_of_time.wav");
+    sf::Sound outOfTime;
+    outOfTime.setBuffer(ootBuffer);
 
-   while (window.isOpen())
+    while (window.isOpen())
     {
 
         /** Handle Player Input */
@@ -328,7 +328,7 @@ int main()
         {
             /** Update Scene */
             sf::Time dt = clock.restart();
-            
+
             // subtract from the amount of time remaining 
             timeRemaining -= dt.asSeconds();
 
@@ -501,7 +501,7 @@ int main()
                     // set the sprite rotation to normal
                     branches[i].setRotation(0);
                 }
-                else 
+                else
                 {
                     // hide the branch 
                     branches[i].setPosition(3000, height);
@@ -546,7 +546,7 @@ int main()
                 sf::FloatRect textRect = messageText.getLocalBounds();
 
                 messageText.setOrigin(
-                    textRect.left + textRect.width / 2.0f, 
+                    textRect.left + textRect.width / 2.0f,
                     textRect.top + textRect.height / 2.0f
                 );
 
@@ -557,7 +557,7 @@ int main()
             }
         } // end if(!paused)
 
-        
+
 
         /** Draw Scene */
         window.clear();
