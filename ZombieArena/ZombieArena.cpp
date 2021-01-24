@@ -76,6 +76,10 @@ int main()
             }
         } // end event polling
 
+         // handle player quitting
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            window.close();
+
         // handle WASD while playing
         if (state == State::PLAYING)
         {
