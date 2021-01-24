@@ -88,7 +88,58 @@ int main()
             sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? player.moveDown() : player.stopDown();
             sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? player.moveLeft() : player.stopLeft();
             sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? player.moveRight() : player.stopRight();
+        } // end WASD while playing
+
+        // handle LEVELING up state
+        if (state == State::LEVELING_UP)
+        {
+            // handle player LEVELING up
+            if (event.key.code == sf::Keyboard::Num1)
+            {
+                state = State::PLAYING;
+            }
+
+            if (event.key.code == sf::Keyboard::Num2)
+            {
+                state = State::PLAYING;
+            }
+            
+            if (event.key.code == sf::Keyboard::Num3)
+            {
+                state = State::PLAYING;
+            }
+
+            if (event.key.code == sf::Keyboard::Num4)
+            {
+                state = State::PLAYING;
+            }
+            
+            if (event.key.code == sf::Keyboard::Num5)
+            {
+                state = State::PLAYING;
+            }
+
+            if (event.key.code == sf::Keyboard::Num6)
+            {
+                state = State::PLAYING;
+            }
+
+            if (state == State::PLAYING)
+            {
+                // prepare the level
+                arena.width = 500;
+                arena.height = 500;
+                arena.left = 0;
+                arena.top = 0;
+
+                int tileSize = 50;
+
+                // spawn player in the middle of the arena 
+                player.spawn(arena, resolution, tileSize);
+
+                // reset the clock so there isn't a frame jump
+                clock.restart();
+            } // end LEVELING up
         }
-    }
     return 0;
 }
