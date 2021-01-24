@@ -30,7 +30,7 @@ int main()
     sf::Vector2f mouseWorldPosition;
 
     // where is the mouse in relation to the screen coordinates
-    sf::Vector2f mouseScreenPosition;
+    sf::Vector2i mouseScreenPosition;
 
     // create an instance of the Player class
     Player player;
