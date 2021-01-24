@@ -141,5 +141,40 @@ int main()
                 clock.restart();
             } // end LEVELING up
         }
+
+        /*
+        * ************
+        * UPDATE FRAME
+        * ************
+        */
+        if (state == State::PLAYING)
+        {
+            // update the delta time
+            sf::Time dt = clock.restart();
+
+            // update the total game time
+            gameTimeTotal += dt;
+
+            // make a decimal fraction of 1 from the delta time 
+            float dtAsSeconds = dt.asSeconds();
+
+            // where is the mouse pointer
+            mouseScreenPosition = sf::Mouse::getPosition();
+
+            // convert mouse position to world coordinates of mainView
+            mouseWorldPosition = window.mapPixelToCoords(
+            sf::Mouse::getPosition(), mainView);
+
+            // update the player
+            player.update(dtAsSeconds, sf::Mouse::getPosition());
+
+            // make note of player's new position
+            sf::Vector2f playerPosition(player.getCenter());
+
+            // make the view center around the player
+            mainView.setCenter(player.getCenter());
+        }
+
+    } // end game loop
     return 0;
 }
