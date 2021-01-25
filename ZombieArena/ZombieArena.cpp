@@ -162,8 +162,7 @@ int main()
             mouseScreenPosition = sf::Mouse::getPosition();
 
             // convert mouse position to world coordinates of mainView
-            mouseWorldPosition = window.mapPixelToCoords(
-            sf::Mouse::getPosition(), mainView);
+            mouseWorldPosition = window.mapPixelToCoords(sf::Mouse::getPosition(), mainView);
 
             // update the player
             player.update(dtAsSeconds, sf::Mouse::getPosition());
