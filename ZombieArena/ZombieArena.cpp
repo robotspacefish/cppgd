@@ -172,7 +172,41 @@ int main()
 
             // make the view center around the player
             mainView.setCenter(player.getCenter());
+        } // end updating the scene
+
+        /*
+        * **************
+        * DRAW THE SCENE
+        * **************
+        */
+        if (state == State::PLAYING)
+        {
+            window.clear();
+
+            // set the mainView to be displayed in the window
+            // and draw everything related to it
+            window.setView(mainView);
+
+            // draw player
+            window.draw(player.getSprite());
         }
+
+        if (state == State::LEVELING_UP)
+        {
+            // TODO
+        }
+
+        if (state == State::PAUSED)
+        {
+            // TODO
+        
+        }
+        if (state == State::GAME_OVER)
+        {
+            // TODO
+        }
+
+        window.display();
 
     } // end game loop
     return 0;
